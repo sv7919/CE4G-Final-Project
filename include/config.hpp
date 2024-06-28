@@ -3,13 +3,13 @@
 #define CONFIG_HPP
 
 // Fetch your key from Adafruit
-#define IO_USERNAME "your username here"
-#define IO_KEY "your key here"
+#define IO_USERNAME "Akasi132"
+#define IO_KEY "aio_osAp68Jclb1TODubavvEWdwm2lp4"
 
 /******************************* WIFI **************************************/
 
-#define WIFI_SSID "your SSID here"
-#define WIFI_PASS "your password here"
+#define WIFI_SSID "bootlogger"
+#define WIFI_PASS "arunachalam"
 
 #include <AdafruitIO_WiFi.h>
 
