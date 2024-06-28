@@ -1,43 +1,23 @@
-#include <Arduino.h>
 #include <config.hpp>
-
-void handleMessage(AdafruitIO_Data *data);
-
-AdafruitIO_Feed *location1 = io.feed("Fill in");
-AdafruitIO_Feed *location2 = io.feed("Fill in");
+#include <screen.cpp>
+#include <io.cpp>
+#include <gps.cpp>
+#include <bme.cpp>
 
 void setup() {
   Serial.begin(115200);
-
-  // wait for serial monitor to open
   while (!Serial);
+  // display LED to show running
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, HIGH);
 
-  // connect to io.adafruit.com
-  Serial.print("Connecting to Adafruit IO");
-  io.connect();
+  initScreen();
+  conAdaIO();
 
-  // set up a message handler for the 'button_f' feed.
-  // the handleMessage function (defined below)
-  // will be called whenever a message is
-  // received from adafruit io.
 
-  /**
-   * @attention uncomment the line below when you want to use it for input data to be sent to dashboard (buttons, switches, etc.)
-   *  led_f->onMessage(handleMessage); 
-   */
-
-  // wait for a connection
-  while (io.status() < AIO_CONNECTED) {
-    Serial.print(".");
-    delay(500);
-  }
-
-  // we are connected
-  Serial.println();
-  Serial.println(io.statusText());
 }
 
 void loop() {
-    io.run();
+    ioLoop();
 
 }

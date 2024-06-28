@@ -1,6 +1,6 @@
 #include <config.hpp>
 
-// initializers
+// init
 void handleMessage(AdafruitIO_Data *data);
 
 AdafruitIO_Feed *location1 = io.feed("Fill in");
