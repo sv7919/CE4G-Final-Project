@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <config.hpp>
 
 void setup() {
 
