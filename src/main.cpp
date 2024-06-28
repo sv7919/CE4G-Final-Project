@@ -1,13 +1,15 @@
 #include <Arduino.h>
 #include <config.hpp>
 
+int fahren;
+
 void setup() {
   Serial.begin(9600);
   while (!Serial);
-  Serial.println(F("BME680 async test"));
+  Serial.println(F("BME680 test"));
 
   if (!bme.begin()) {
-    Serial.println(F("Could not find a valid BME680 sensor, check wiring!"));
+    Serial.println("Could not find a valid BME680 sensor, check wiring!");
     while (1);
   }
 
@@ -20,51 +22,26 @@ void setup() {
 }
 
 void loop() {
-  // Tell BME680 to begin measurement.
-  unsigned long endTime = bme.beginReading();
-  if (endTime == 0) {
-    Serial.println(F("Failed to begin reading :("));
+  if (! bme.performReading()) {
+    Serial.println("Failed to perform reading :(");
     return;
   }
-  Serial.print(F("Reading started at "));
-  Serial.print(millis());
-  Serial.print(F(" and will finish at "));
-  Serial.println(endTime);
+  Serial.print("Temperature = ");
+  fahren = ((bme.temperature*9)/5)+32;
+  Serial.print(fahren);
+  Serial.println(" *F");
 
-  Serial.println(F("You can do other work during BME680 measurement."));
-  delay(50); // This represents parallel work.
-  // There's no need to delay() until millis() >= endTime: bme.endReading()
-  // takes care of that. It's okay for parallel work to take longer than
-  // BME680's measurement time.
-
-  // Obtain measurement results from BME680. Note that this operation isn't
-  // instantaneous even if milli() >= endTime due to I2C/SPI latency.
-  if (!bme.endReading()) {
-    Serial.println(F("Failed to complete reading :("));
-    return;
-  }
-  Serial.print(F("Reading completed at "));
-  Serial.println(millis());
-
-  Serial.print(F("Temperature = "));
-  Serial.print(bme.temperature);
-  Serial.println(F(" *C"));
-
-  Serial.print(F("Pressure = "));
+  Serial.print("Pressure = ");
   Serial.print(bme.pressure / 100.0);
-  Serial.println(F(" hPa"));
+  Serial.println(" hPa");
 
-  Serial.print(F("Humidity = "));
+  Serial.print("Humidity = ");
   Serial.print(bme.humidity);
-  Serial.println(F(" %"));
+  Serial.println(" %");
 
-  Serial.print(F("Gas = "));
+  Serial.print("Gas = ");
   Serial.print(bme.gas_resistance / 1000.0);
-  Serial.println(F(" KOhms"));
-
-  Serial.print(F("Approx. Altitude = "));
-  Serial.print(bme.readAltitude(SEALEVELPRESSURE_HPA));
-  Serial.println(F(" m"));
+  Serial.println(" KOhms");
 
   Serial.println();
   delay(2000);
