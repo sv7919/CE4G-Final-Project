@@ -12,8 +12,8 @@ void setup () {
 void loop() {
     //GPSLoop();
 
-    delay(2000);
+    delay(5000);
     BMELoop();
-    delay(2000);
+    delay(5000);
     IOLoop();
 }

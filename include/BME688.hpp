@@ -53,5 +53,4 @@ void BMELoop() {
   Serial.println(" KOhms");
 
   Serial.println();
-  delay(2000);
 }
