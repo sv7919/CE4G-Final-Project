@@ -3,6 +3,11 @@
 #include <BME688.hpp>
 #include <IO.hpp>
 
+/**
+ * @brief Add your Adafruit username, password, and your wifi and password
+ * 
+ */
+
 void setup () {
     //GPSSetup();
     BMESetup();
