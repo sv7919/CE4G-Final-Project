@@ -11,9 +11,9 @@ void setup () {
 
 void loop() {
     //GPSLoop();
-    //Serial.println("");
-    //delay(2000);
+
+    delay(2000);
     BMELoop();
-    //delay(2000);
+    delay(2000);
     IOLoop();
 }

@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #include <config.hpp>
 
-AdafruitIO_Feed *temperaturefeed = io.feed("tempreading");
-AdafruitIO_Feed *humidityfeed = io.feed("humidreading");
+AdafruitIO_Feed *temperaturefeed = io.feed("temperature");
+AdafruitIO_Feed *humidityfeed = io.feed("humidity");
 
 void handleMessagetemp(AdafruitIO_Data *data);
 void handleMessagehumid(AdafruitIO_Data *data);
@@ -27,7 +27,7 @@ void IOSetup() {
 
 void IOLoop() {
     io.run();
-    if (io.status() > AIO_CONNECTED) {
+    if (io.status() >= AIO_CONNECTED) {
         temperaturefeed->save(tempreading);
         humidityfeed->save(humidreading);
     }
