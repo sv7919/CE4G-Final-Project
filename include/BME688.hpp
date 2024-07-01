@@ -37,6 +37,7 @@ void BMELoop() {
 
   Serial.print("Pressure = ");
   Serial.print(bme.pressure / 100.0);
+  pressreading = bme.pressure/100;
   Serial.println(" hPa");
 
 /**
@@ -51,6 +52,4 @@ void BMELoop() {
   Serial.print("Gas = ");
   Serial.print(bme.gas_resistance / 1000.0);
   Serial.println(" KOhms");
-
-  Serial.println();
 }
