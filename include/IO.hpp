@@ -5,7 +5,7 @@ AdafruitIO_Feed *temperaturefeed = io.feed("tempreading");
 AdafruitIO_Feed *humidityfeed = io.feed("humidreading");
 
 void handleMessagetemp(AdafruitIO_Data *data);
-void handleMessagehumi(AdafruitIO_Data *data);
+void handleMessagehumid(AdafruitIO_Data *data);
 
 
 void IOSetup() {
@@ -14,7 +14,7 @@ void IOSetup() {
     io.connect();
      // set up a message handler for the location feed.
     temperaturefeed->onMessage(handleMessagetemp);
-    humidityfeed->onMessage(handleMessagehumi);
+    humidityfeed->onMessage(handleMessagehumid);
 
     while(io.status() < AIO_CONNECTED) {
     Serial.print(".");
@@ -37,6 +37,6 @@ void handleMessagetemp(AdafruitIO_Data *data) {
     char* received_tempreading = data->value();
 }
 
-void handleMessagehumi(AdafruitIO_Data *data) {
+void handleMessagehumid(AdafruitIO_Data *data) {
     char* received_humidreading = data->value();
 }

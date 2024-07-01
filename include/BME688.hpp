@@ -31,7 +31,7 @@ void BMELoop() {
     return;
   }
   Serial.print("Temperature = ");
-  tempreading = ((bme.temperature*9)/5)+32;
+  tempreading = (bme.temperature * 1.8)+32;
   Serial.print(tempreading);
   Serial.println(" *F");
 
