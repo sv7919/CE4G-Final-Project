@@ -3,13 +3,13 @@
 
 // visit io.adafruit.com if you need to create an account,
 // or if you need your Adafruit IO key.
-#define IO_USERNAME  "sv7919"
-#define IO_KEY       "aio_qdLX88zsImr16OvlLXb536yn1vj6"
+#define IO_USERNAME  "YOUR_USERNAME"
+#define IO_KEY       "YOUR_KEY"
 
 /******************************* WIFI **************************************/
 
-#define WIFI_SSID "Sid"
-#define WIFI_PASS "Riverdale321"
+#define WIFI_SSID "YOUR_WIFI"
+#define WIFI_PASS "YOUR_PASSWORD"
 
 #include "AdafruitIO_WiFi.h"
 
