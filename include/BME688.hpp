@@ -1,9 +1,13 @@
 #include <Arduino.h>
 #include <config.hpp>
 
-int fahren;
+#define BME_SCK 13
+#define BME_MISO 12
+#define BME_MOSI 11
+#define BME_CS 10
+Adafruit_BME680 bme; // I2C
 
-void setup() {
+void BMESetup() {
   Serial.begin(9600);
   while (!Serial);
   Serial.println(F("BME680 test"));
@@ -21,22 +25,27 @@ void setup() {
   bme.setGasHeater(320, 150); // 320*C for 150 ms
 }
 
-void loop() {
+void BMELoop() {
   if (! bme.performReading()) {
     Serial.println("Failed to perform reading :(");
     return;
   }
   Serial.print("Temperature = ");
-  fahren = ((bme.temperature*9)/5)+32;
-  Serial.print(fahren);
+  tempreading = ((bme.temperature*9)/5)+32;
+  Serial.print(tempreading);
   Serial.println(" *F");
 
   Serial.print("Pressure = ");
   Serial.print(bme.pressure / 100.0);
   Serial.println(" hPa");
 
+/**
+ * @brief created a global variable for the humidity from the bme to be sent to the IO Dashboard
+ * 
+ */
   Serial.print("Humidity = ");
   Serial.print(bme.humidity);
+  humidreading = bme.humidity;
   Serial.println(" %");
 
   Serial.print("Gas = ");
