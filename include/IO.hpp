@@ -4,10 +4,12 @@
 AdafruitIO_Feed *temperaturefeed = io.feed("temperature");
 AdafruitIO_Feed *humidityfeed = io.feed("humidity");
 AdafruitIO_Feed *pressurefeed = io.feed("pressure");
+AdafruitIO_Feed *coordstrfeed = io.feed("coordinate-string");
 
 void handleMessagetemp(AdafruitIO_Data *data);
 void handleMessagehumid(AdafruitIO_Data *data);
 void handleMessagepressure(AdafruitIO_Data *data);
+void handleMessagecoordstr(AdafruitIO_Data *data);
 
 
 void IOSetup() {
@@ -18,6 +20,7 @@ void IOSetup() {
     temperaturefeed->onMessage(handleMessagetemp);
     humidityfeed->onMessage(handleMessagehumid);
     pressurefeed->onMessage(handleMessagepressure);
+    coordstrfeed->onMessage(handleMessagecoordstr);
 
     while(io.status() < AIO_CONNECTED) {
     Serial.print(".");
@@ -27,6 +30,7 @@ void IOSetup() {
     temperaturefeed->get();
     humidityfeed->get();
     pressurefeed->get();
+    coordstrfeed->get();
 }
 
 void IOLoop() {
@@ -35,6 +39,7 @@ void IOLoop() {
         temperaturefeed->save(tempreading);
         humidityfeed->save(humidreading);
         pressurefeed->save(pressreading);
+        coordstrfeed->save(stats, lat, lon, ele);
     }
 }
 
@@ -48,4 +53,9 @@ void handleMessagehumid(AdafruitIO_Data *data) {
 
 void handleMessagepressure(AdafruitIO_Data *data) {
     char* received_pressreading = data->value();
+}
+
+void handleMessagecoordstr(AdafruitIO_Data *data) {
+    String received_coordstrreading = data->value();
+
 }

@@ -27,15 +27,15 @@ AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
 #include <SPI.h>
 #include <cstdint>
 
-int tempreading;
-int humidreading;
-int pressreading;
+float tempreading;
+float humidreading;
+float pressreading;;
 
 double lat;
 double lon;
 double ele;
 
-String coordinates;
+String stats;
 
 #endif // CONFIG_HPP
 

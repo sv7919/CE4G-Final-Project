@@ -9,7 +9,7 @@
  * 
  */
 
-String c = ", ";
+String c = ",";
 
 void setup () {
     GPSSetup();
@@ -34,6 +34,11 @@ void loop() {
     Serial.println();
     delay(5000);
 
+    stats = String(String(lat) + c + String(lon) + c + String(ele) + c + String(tempreading) + c + String(humidreading) + c + String(pressreading));
+    clear();
+    screen.print(stats);
+    delay(5000);
+
     IOLoop();
     /**
      * @brief Simply lets the user know the dashboard has been updated through the serial monitor
@@ -43,9 +48,4 @@ void loop() {
     }
     delay(5000);
 
-    // figure out how to send the string to Adafruit IO
-    String coordinates = String(String(lat) + c + String(lon) + c + String(ele) + c + String(tempreading) + c + String(humidreading) + c + String(pressreading));
-    clear();
-    screen.print(coordinates);
-    delay(5000);
     }
