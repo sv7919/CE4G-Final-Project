@@ -8,7 +8,7 @@
  * 
  */
 
-String c = ",";
+String c = ", ";
 
 void setup () {
     GPSSetup();
