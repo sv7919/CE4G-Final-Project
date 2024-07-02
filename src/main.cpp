@@ -17,17 +17,24 @@ void setup () {
 }
 
 void loop() {
+    while (! GPS.fix) {
+        GPSLoop();
+    }
     GPSLoop();
     Serial.println();
     delay(5000);
+
     BMELoop();
     Serial.println();
     delay(5000);
+
     IOLoop();
     if (io.status() >= AIO_CONNECTED) {
-      Serial.println("AdafruitIO dashboard updated");
+        Serial.println("AdafruitIO dashboard updated");
     }
     delay(5000);
+
     String coordinates = String(String(lat) + c + String(lon) + c + String(ele) + c + String(tempreading) + c + String(humidreading) + c + String(pressreading));
     Serial.println(coordinates);
-}
+    Serial.println();
+    }
