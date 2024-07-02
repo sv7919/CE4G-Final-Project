@@ -2,6 +2,7 @@
 #include <GPSFunc.hpp>
 #include <BME688.hpp>
 #include <IO.hpp>
+#include <Display.hpp>
 
 /**
  * @brief Add your Adafruit username, password, and your wifi and password
@@ -14,15 +15,16 @@ void setup () {
     GPSSetup();
     BMESetup();
     IOSetup();
+    DisplaySetup();
 }
 
 void loop() {
     /**
      * @brief the while loop makes sure the GPS is fully initialized before running the rest of the code otherwise it never happens
      */
-    while (! GPS.fix) {
-        GPSLoop();
-    }
+    //while (! GPS.fix) {
+        //GPSLoop();
+    //}
 
     GPSLoop();
     Serial.println();
@@ -43,6 +45,7 @@ void loop() {
 
     // figure out how to send the string to Adafruit IO
     String coordinates = String(String(lat) + c + String(lon) + c + String(ele) + c + String(tempreading) + c + String(humidreading) + c + String(pressreading));
-    Serial.println(coordinates);
-    Serial.println();
+    clear();
+    screen.print(coordinates);
+    delay(5000);
     }
