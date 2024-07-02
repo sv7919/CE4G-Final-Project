@@ -4,7 +4,7 @@
 AdafruitIO_Feed *temperaturefeed = io.feed("temperature");
 AdafruitIO_Feed *humidityfeed = io.feed("humidity");
 AdafruitIO_Feed *pressurefeed = io.feed("pressure");
-AdafruitIO_Feed *coordstrfeed = io.feed("coordinate-string");
+AdafruitIO_Feed *coordstrfeed = io.feed("weather-1");
 
 void handleMessagetemp(AdafruitIO_Data *data);
 void handleMessagehumid(AdafruitIO_Data *data);
