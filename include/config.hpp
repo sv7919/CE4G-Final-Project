@@ -15,7 +15,6 @@
 
 AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
 
-//Merged branches: BME688 and GPS
 #include <Wire.h>
 #include <SPI.h>
 #include <Adafruit_Sensor.h>
@@ -26,10 +25,13 @@ AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
 #include <Adafruit_ST7789.h> 
 #include <SPI.h>
 #include <cstdint>
+#include <Wire.h>
+#include "Adafruit_SGP40.h"
 
 float tempreading;
 float humidreading;
-float pressreading;;
+float pressreading;
+float aqireading;
 
 double lat;
 double lon;
