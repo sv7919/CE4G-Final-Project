@@ -3,13 +3,13 @@
 
 // visit io.adafruit.com if you need to create an account,
 // or if you need your Adafruit IO key.
-#define IO_USERNAME  ""
-#define IO_KEY       ""
+#define IO_USERNAME  "sv7919"
+#define IO_KEY       "aio_vgWr16QgadEvcSE0uvyOSVQrftex"
 
 /******************************* WIFI **************************************/
 
-#define WIFI_SSID ""
-#define WIFI_PASS ""
+#define WIFI_SSID "Sid"
+#define WIFI_PASS "Riverdale321"
 
 #include "AdafruitIO_WiFi.h"
 
@@ -22,6 +22,10 @@ AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
 #include "Adafruit_BME680.h"
 #include <Adafruit_GPS.h>
 #include <AdafruitIO.h>
+#include <Adafruit_GFX.h> 
+#include <Adafruit_ST7789.h> 
+#include <SPI.h>
+#include <cstdint>
 
 int tempreading;
 int humidreading;
