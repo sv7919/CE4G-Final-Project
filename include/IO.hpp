@@ -1,11 +1,11 @@
 #include <Arduino.h>
 #include <config.hpp>
 
-AdafruitIO_Feed *temperaturefeed = io.feed("temperature");
-AdafruitIO_Feed *humidityfeed = io.feed("humidity");
-AdafruitIO_Feed *pressurefeed = io.feed("pressure");
-AdafruitIO_Feed *aqifeed = io.feed("aqi");
-AdafruitIO_Feed *coordstrfeed = io.feed("weather-1");
+AdafruitIO_Feed *temperaturefeed = io.feed("temperature2");
+AdafruitIO_Feed *humidityfeed = io.feed("humidity2");
+AdafruitIO_Feed *pressurefeed = io.feed("pressure2");
+AdafruitIO_Feed *aqifeed = io.feed("aqi2");
+AdafruitIO_Feed *coordstrfeed = io.feed("weather-2");
 
 void handleMessagetemp(AdafruitIO_Data *data);
 void handleMessagehumid(AdafruitIO_Data *data);
@@ -49,21 +49,21 @@ void IOLoop() {
 }
 
 void handleMessagetemp(AdafruitIO_Data *data) {
-    char* received_tempreading = data->value();
+    char* received_tempreading2 = data->value();
 }
 
 void handleMessagehumid(AdafruitIO_Data *data) {
-    char* received_humidreading = data->value();
+    char* received_humidreading2 = data->value();
 }
 
 void handleMessagepressure(AdafruitIO_Data *data) {
-    char* received_pressreading = data->value();
+    char* received_pressreading2 = data->value();
 }
 
 void handleMessageaqi(AdafruitIO_Data *data) {
-    char* received_aqireading = data->value();
+    char* received_aqireading2 = data->value();
 }
 
 void handleMessagecoordstr(AdafruitIO_Data *data) {
-    String received_coordstrreading = data->value();
+    String received_coordstrreading2 = data->value();
 }
