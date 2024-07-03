@@ -13,8 +13,8 @@
 String c = ",";
 
 void setup () {
-    //GPSSetup();
-    //BMESetup();
+    GPSSetup();
+    BMESetup();
     AQISetup();
     IOSetup();
     DisplaySetup();
@@ -28,13 +28,13 @@ void loop() {
         //GPSLoop();
     //}
 
-    //GPSLoop();
-    //Serial.println();
-    //delay(5000);
+    GPSLoop();
+    Serial.println();
+    delay(5000);
 
-    //BMELoop();
-    //Serial.println();
-    //delay(5000);
+    BMELoop();
+    Serial.println();
+    delay(5000);
 
     AQILoop();
     Serial.println();
