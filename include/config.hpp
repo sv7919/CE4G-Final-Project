@@ -40,4 +40,3 @@ double ele;
 String stats;
 
 #endif // CONFIG_HPP
-

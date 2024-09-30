@@ -24,9 +24,9 @@ void loop() {
     /**
      * @brief the while loop makes sure the GPS is fully initialized before running the rest of the code otherwise it never happens
      */
-    //while (! GPS.fix) {
-        //GPSLoop();
-    //}
+    while (! GPS.fix) {
+        GPSLoop();
+    }
 
     GPSLoop();
     Serial.println();
