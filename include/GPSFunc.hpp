@@ -1,14 +1,14 @@
 #include <Arduino.h>
 #include <config.hpp>
 
-Adafruit_GPS GPS(&Wire); // Connect to the GPS on the hardware I2C port
+Adafruit_GPS GPS(&Wire); // Connect to the GPS on the hardware I2C port and assigns the Adafruit_GPS class to GPS
 #define GPSECHO false
 
-uint32_t timer = millis();
+uint32_t timer = millis(); //creates an unsigned 32 bit integer called timer that keeps track of milliseconds counted as program runs
 
 
 void GPSSetup() {
-   Serial.begin(115200);
+  Serial.begin(115200);
   Serial.println("Adafruit I2C GPS library basic test!");
 
   // 9600 NMEA is the default baud rate for Adafruit MTK GPS's- some use 4800
@@ -37,7 +37,6 @@ void GPSLoop() // run over and over again
 {
   // read data from the GPS in the 'main loop'
   char c = GPS.read();
-  // if you want to debug, this is a good time to do it!
   if (GPSECHO)
     if (c) Serial.print(c);
   // if a sentence is received, we can check the checksum, parse it...
@@ -62,9 +61,12 @@ void GPSLoop() // run over and over again
     Serial.print(GPS.seconds, DEC); Serial.print('.');
     if (GPS.milliseconds < 10) {
       Serial.print("00");
+
     } else if (GPS.milliseconds > 9 && GPS.milliseconds < 100) {
       Serial.print("0");
+      
     }
+
     Serial.println(GPS.milliseconds);
     Serial.print("Date: ");
     Serial.print(GPS.day, DEC); Serial.print('/');
@@ -72,6 +74,7 @@ void GPSLoop() // run over and over again
     Serial.println(GPS.year, DEC);
     Serial.print("Fix: "); Serial.print((int)GPS.fix);
     Serial.print(" quality: "); Serial.println((int)GPS.fixquality);
+    // If the GPS is initialized and all of the readings are coming through properly then the program will print out the latitude and longitude
     if (GPS.fix) {
       Serial.print("Location: ");
       Serial.print(GPS.latitude/100, 4); Serial.print(GPS.lat);
