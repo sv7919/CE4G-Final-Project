@@ -4,14 +4,14 @@
 
 // visit io.adafruit.com if you need to create an account,
 // or if you need your Adafruit IO key.
-#define IO_USERNAME  "sv7919"
-#define IO_KEY       "aio_nsbb87CncSXuW0MYIIuHkqCPAIqp"
+#define IO_USERNAME  "" 
+#define IO_KEY       ""
 
 /******************************* WIFI **************************************/
 // Wifi is needed for the connection of all of the microcontrollers and between Adafruit and the master microcontroller
 
-#define WIFI_SSID "Verzion_7KZT9R"
-#define WIFI_PASS "bun3-leaf-hew"
+#define WIFI_SSID ""
+#define WIFI_PASS ""
 
 #include "AdafruitIO_WiFi.h"
 
