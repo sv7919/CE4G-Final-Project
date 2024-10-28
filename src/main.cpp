@@ -11,12 +11,13 @@
  */
 
 
-void setup () {
+void setup() {
+    DisplaySetup(); //Initializes the screen
+    IOSetup(); // Initializes the connection between the Adafruit IO website and the microcontroller
     GPSSetup(); // Initializes the GPS attachment on the microcontroller
     BMESetup(); // Initializes the temperature sensor on the microcontroller
     AQISetup(); // Initializes the AQI sensor on the microcontroller
-    IOSetup(); // Initializes the connection between the Adafruit IO website and the microcontroller
-    DisplaySetup();
+    
 }
 
 void loop() {

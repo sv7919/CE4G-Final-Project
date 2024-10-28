@@ -17,6 +17,7 @@ void IOSetup() {
     io.connect(); //The "Input/Output" class runs the connect function with the class
     coordstrfeed1->onMessage(handleMessagecoordstr); //Allows for the coordinate string to access the handle message function which contains the data in the AdafruitIO_Data class
 
+    Serial.println("Waiting for connection with Adafruit IO");
     while(io.status() < AIO_CONNECTED) { //if the status function with in the IO class is "less than" or not connected 
         Serial.print("."); //print out a dot-dot-dot effect until connected
         delay(500);
