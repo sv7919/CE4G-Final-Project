@@ -1,8 +1,8 @@
-#include <Arduino.h>
-#include <GPSFunc.hpp>
-#include <BME688.hpp>
-#include <AQI.hpp>
-#include <IO.hpp>
+#include <Arduino.h> // Includes the Arduino Library so the microcontroller can talk to the other sensors
+#include <GPSFunc.hpp> // Includes the code used to run the GPS attachment
+#include <BME688.hpp>  //Includes the code used to run the BME688 sensor
+#include <AQI.hpp>  // Includes the code used to run the AQI sensor
+#include <IO.hpp>  // Includes to the code used to run the Adafruit IO readings and dashboard
 #include <Display.hpp>
 
 /**
@@ -10,44 +10,51 @@
  * 
  */
 
-String c = ",";
 
-void setup () {
-    GPSSetup();
-    BMESetup();
-    AQISetup();
-    IOSetup();
-    DisplaySetup();
+void setup() {
+    DisplaySetup(); //Initializes the screen
+    IOSetup(); // Initializes the connection between the Adafruit IO website and the microcontroller
+    GPSSetup(); // Initializes the GPS attachment on the microcontroller
+    BMESetup(); // Initializes the temperature sensor on the microcontroller
+    AQISetup(); // Initializes the AQI sensor on the microcontroller
+    
 }
 
 void loop() {
     /**
-     * @brief the while loop makes sure the GPS is fully initialized before running the rest of the code otherwise it never happens
+     * @brief the while loop makes sure the GPS is fully initialized before running the rest of the code otherwise the GPS will never initialize
      */
     while (! GPS.fix) {
         GPSLoop();
     }
 
-    GPSLoop();
-    Serial.println();
-    delay(5000);
+    GPSLoop(); //Runs the GPS Loop found in GPSFunc.hpp
+    Serial.println(); //Spacing
+    delay(12000); //Waits 12 seconds before the next function is run because of our data limit for Adafruit IO
 
-    BMELoop();
+    BMELoop(); //Runs the BME Loop found in BME688.hpp
     Serial.println();
-    delay(5000);
+    delay(12000);
 
-    AQILoop();
+    AQILoop(); //Runs the AQI Loop found in AQI.hpp
     Serial.println();
-    delay(5000);
+    delay(12000);
 
-    stats = String(String(lat) + c + String(lon) + c + String(ele) + c + String(tempreading) + c + String(humidreading) + c + String(pressreading) + c + String(aqireading));
+    /* 
+    Intitializing our stats and prints out our statistics that we have collected so far
+    */
+    stats = String(String(lat) + "," + String(lon) + "," + String(ele) + "," + String(tempreading) + "," + String(humidreading) + "," + String(pressreading) + "," + String(aqireading));
     clear();
     screen.print(stats);
-    delay(5000);
+    delay(12000);
 
-    IOLoop();
-    if (io.status() >= AIO_CONNECTED) {
-        Serial.println("AdafruitIO dashboard updated");
+    IOLoop(); //Runs the IO function in IO.hpp that connects us to our dashboard in Adafruit IO
+    if (io.status() >= AIO_CONNECTED) { //If it is connected
+        Serial.println("AdafruitIO dashboard updated"); //Then we get a message on the console saying that the dashboard got updated
     }
-    delay(5000);
+    delay(12000);
+    
+    /*
+    Continuously runs the function over and over for a live feed of temperature, location, elevation, AQI, and air pressure
+    */
 }
